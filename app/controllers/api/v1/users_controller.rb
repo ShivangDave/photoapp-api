@@ -4,7 +4,11 @@ class Api::V1::UsersController < ApplicationController
 
   def index
     @users = Api::V1::User.all
-    secure_response(@users, :ok)
+    secure_response({ :users => @users.as_json }, :ok)
+  end
+
+  def show
+    check_persistance
   end
 
   def create

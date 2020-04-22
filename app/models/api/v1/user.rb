@@ -6,7 +6,7 @@ class Api::V1::User < ApplicationRecord
   validates :email, :email => true
 
   def profile
-    self.to_json(
+    self.as_json(
       only: [
         :username,
         :profile_name,
