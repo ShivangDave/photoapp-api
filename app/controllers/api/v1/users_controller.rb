@@ -1,15 +1,10 @@
 class Api::V1::UsersController < ApplicationController
 
   before_action :find_user, only: [:show, :update, :destroy]
-  # after_action :check_persistance, only: [:create, :update]
 
   def index
     @users = Api::V1::User.all
-    if @users
-      render :json => @users, :status => :ok
-    else
-      render :json => @users.error.details, :status => :not_found
-    end
+    secure_response(@users, :ok)
   end
 
   def create
@@ -25,9 +20,9 @@ class Api::V1::UsersController < ApplicationController
   def destroy
     if @user
       @user.destroy
-      render :json => { :message => "Destroyed.." }, :status => :ok
+      secure_response("Destroyed..", :ok)
     else
-      render :json => { :message => "Failed.." }, :status => :not_found
+      secure_response("Failed..", :not_found)
     end
   end
 
@@ -36,11 +31,16 @@ class Api::V1::UsersController < ApplicationController
     params.require(:user).permit(:username,:password,:profile_name,:email,:location)
   end
 
+  def secure_response(packet, status)
+    msg = JWT.encode(packet,ENV['SUPER_SECRET_USER_KEY'])
+    render :json => { :message => msg }, :status => status
+  end
+
   def check_persistance
     if @user.persisted?
-      render :json => @user, :status => :ok
+      secure_response(@user.profile, :ok)
     else
-      render :json => @user.errors.details, :status => :bad_request
+      secure_response(@user.errors.details, :bad_request)
     end
   end
 
