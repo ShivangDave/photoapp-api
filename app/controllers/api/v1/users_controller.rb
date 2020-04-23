@@ -32,7 +32,9 @@ class Api::V1::UsersController < ApplicationController
 
   private
   def users_params
-    params.require(:user).permit(:username,:password,:profile_name,:email,:location)
+    payload = JWT.decode(params[:_json],ENV['SUPER_SECRET_USER_KEY'])[0]
+    decoded_params = ActionController::Parameters.new(payload)
+    decoded_params.require(:user).permit(:username,:password,:profile_name,:email,:location)
   end
 
   def secure_response(packet, status)
