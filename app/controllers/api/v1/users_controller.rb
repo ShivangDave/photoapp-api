@@ -24,29 +24,26 @@ class Api::V1::UsersController < ApplicationController
   def destroy
     if @user
       @user.destroy
-      secure_response("Destroyed..", :ok)
+      secure_response({ :message => "Destroyed.." }, :ok)
     else
-      secure_response("Failed..", :not_found)
+      secure_response({ :message => "Failed.." }, :not_found)
     end
   end
 
   private
   def users_params
-    payload = JWT.decode(params[:_json],ENV['SUPER_SECRET_USER_KEY'])[0]
-    decoded_params = ActionController::Parameters.new(payload)
-    decoded_params.require(:user).permit(:username,:password,:profile_name,:email,:location)
-  end
-
-  def secure_response(packet, status)
-    msg = JWT.encode(packet,ENV['SUPER_SECRET_USER_KEY'])
-    render :json => { :message => msg }, :status => status
+    decode_params.require(:user).permit(:username,:password,:profile_name,:email,:location)
   end
 
   def check_persistance
-    if @user.persisted?
+    if @user && @user.persisted?
       secure_response(@user.profile, :ok)
     else
-      secure_response(@user.errors.details, :bad_request)
+      if @user.nil?
+        secure_response({ :message => "Something went wrong.."}, :bad_request)
+      else
+        secure_response(@user.errors.details, :bad_request)
+      end
     end
   end
 

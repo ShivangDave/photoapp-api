@@ -13,7 +13,12 @@ class Api::V1::User < ApplicationRecord
         :email,
         :location
       ]
-    )
+    ).merge({ 
+      '_id': JWT.encode(
+        self.id,
+        ENV['SUPER_SECRET_USER_KEY']
+      ) 
+    })
   end
 
 end
