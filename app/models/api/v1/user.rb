@@ -5,6 +5,17 @@ class Api::V1::User < ApplicationRecord
   validates :username, :email, :uniqueness => { :case_sensitive => false }
   validates :email, :email => true
 
+  def self.profiles
+    self.all.as_json(
+      only: [
+        :id,
+        :username,
+        :profile_name,
+        :location
+      ]
+    )
+  end
+
   def profile
     self.as_json(
       only: [

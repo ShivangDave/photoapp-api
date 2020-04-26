@@ -3,8 +3,8 @@ class Api::V1::UsersController < ApplicationController
   before_action :find_user, only: [:show, :update, :destroy]
 
   def index
-    @users = Api::V1::User.all
-    secure_response({ :users => @users.as_json }, :ok)
+    @users = Api::V1::User.profiles
+    secure_response({ :users => @users }, :ok)
   end
 
   def show
