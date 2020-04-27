@@ -1,6 +1,11 @@
 ## Photoapp API
 
 ## Features
+- E2EE ✅
+    - Allow: End to End Encryption ✅
+    - Allow: Abstract and Encrypt key in ENV ✅
+    - Don't: Sharing key with each packet ✅ 
+    - Stretch: Setup a trusty && secure middleware to bounce requests ❌
 
 - Create User Profiles 
     - Allow: Username, Profile Name, Location, Email
