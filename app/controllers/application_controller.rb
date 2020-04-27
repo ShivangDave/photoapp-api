@@ -17,7 +17,7 @@ class ApplicationController < ActionController::API
         render :json => { :message => msg }, :status => status
     end
 
-    def decode_params
+    def decode_request
         payload = JWT.decode(params[:_json],ENV['SUPER_SECRET_USER_KEY'])[0]
         decoded_params = ActionController::Parameters.new(payload)
     end

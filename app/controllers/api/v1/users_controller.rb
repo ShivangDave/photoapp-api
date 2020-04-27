@@ -30,9 +30,17 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def follow
+    # @user.followers << #
+  end
+
+  def unfollow
+    # @user.followers.filter
+  end
+
   private
   def users_params
-    decode_params.require(:user).permit(:username,:password,:profile_name,:email,:location)
+    decode_request.require(:user).permit(:username,:password,:profile_name,:email,:location)
   end
 
   def check_persistance
@@ -50,4 +58,5 @@ class Api::V1::UsersController < ApplicationController
   def find_user
     @user = Api::V1::User.find_by(id: params[:id])
   end
+  
 end

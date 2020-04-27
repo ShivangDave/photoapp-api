@@ -8,6 +8,14 @@ u1 = Api::V1::User.create(
   location: 'test'
 )
 
+u2 = Api::V1::User.create(
+  username: 'test2',
+  password: 'test2',
+  profile_name: 'test2',
+  email: 'test2@test.com',
+  location: 'test2'
+)
+
 # u2 = Api::V1::User.new(
 #   username: 'test',
 #   password: 'test',
