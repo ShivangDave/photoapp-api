@@ -4,7 +4,7 @@
 - E2EE ✅
     - Allow: End to End Encryption ✅
     - Allow: Abstract and Encrypt key in ENV ✅
-    - Don't: Sharing key with each packet ✅ 
+    - Don't: Sharing keys with each packet ✅ 
     - Stretch: Setup a trusty && secure middleware to bounce requests ❌
 
 - Create User Profiles 
@@ -19,6 +19,13 @@
     - Allow: Edit Caption, Delete Post
 
 - TBD
+
+## Stack
+
+- Backend: Ruby on Rails
+- Frontend: React, GraphQL
+- Storage: Google Cloud
+- CI: Travis CI
 
 ## Routes
 ### Status Code
