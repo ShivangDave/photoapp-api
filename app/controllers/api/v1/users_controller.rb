@@ -22,12 +22,8 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def destroy
-    if @user
-      @user.destroy
-      secure_response({ :message => "Destroyed.." }, :ok)
-    else
-      secure_response({ :message => "Failed.." }, :not_found)
-    end
+    @user.destroy
+    secure_response({ :message => "Destroyed.." }, :ok)
   end
 
   def follow
@@ -40,12 +36,15 @@ class Api::V1::UsersController < ApplicationController
 
   private
   def users_params
-    decode_request.require(:user).permit(:username,:password,:profile_name,:email,:location)
+    if decode_request
+      decode_request.require(:user).permit(:username,:password,:profile_name,:email,:location)
+    end
   end
 
   def check_persistance
     if @user && @user.persisted?
-      secure_response(@user.profile, :ok)
+      profile = @user.profile
+      secure_response(profile, :ok)
     else
       if @user.nil?
         secure_response({ :message => "Something went wrong.."}, :bad_request)

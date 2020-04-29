@@ -18,21 +18,27 @@
     - Allow: Likes, Comments
     - Allow: Edit Caption, Delete Post
 
+- Unit Tests 💥
+    - 100% Code Coverage
+    - Red Green Refactor
+
 - TBD
 
 ## Stack
 
 - Backend: Ruby on Rails
+- Unit Tests (API): RSpec
 - Frontend: React, GraphQL
 - Storage: Google Cloud
 - CI: Travis CI
 
-## Routes
-### Status Code
+## Status Code
 
 - Done - ✅
 - WIP - 💥
 - Coming soom - ❌
+
+## Routes
 
 ### Users ✅
 | Type | Auth | Routes | Status | 
@@ -55,5 +61,14 @@
 | POST | required | /posts/:id/comment | ❌ |
 | DELETE | required | /posts/:id | ❌ |
 
+### Unit Tests
+
+| Progress | Name | Type | Status | 
+|-|-|-|-|
+| 100% | User | Model | ✅ |
+| 100% | Follow | Model | ✅ |
+| 100% | Application | Controllers | ✅ |
+| 100% | Users | Controllers | ✅ |
+| 0% | TBD | TBD | 💥 |
 
 ### TBD
