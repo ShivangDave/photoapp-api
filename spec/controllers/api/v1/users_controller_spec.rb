@@ -105,94 +105,46 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     
   end
 
-  context 'PATCH #update' do
-      
+  context 'PATCH #update' do   
     let (:user_params) { { "username": "test4", "password": "test", "profile_name": "test", "email": "test4@test.com", "location": "test" } }
 
-    # it 'returns a 200 for valid request' do
-    #   post :create, params: { "_json": JWT.encode({ "user": user_params }, ENV['SUPER_SECRET_USER_KEY'] )}
-      
-    #   expect(response.status).to eq(200)
-    #   expect(response.body).to include("message")
-    # end
-
-    # it 'creates new user' do
-    #   post :create, params: { "_json": JWT.encode({ "user": user_params }, ENV['SUPER_SECRET_USER_KEY'] )}
-      
-    #   packet = JSON.parse(response.body)["message"]  
-    #   begin
-    #     message = JWT.decode(packet,ENV['SUPER_SECRET_USER_KEY'])[0]
-    #   rescue
-    #     message = nil
-    #   end
-
-    #   expect(response.status).to eq(200)
-    #   expect(message).to include("_id")
-    #   expect(message).to include("username")
-    #   expect(message).to include("email")
-    #   expect(message).to include("profile_name")
-    #   expect(message).to include("location")
-    #   expect(message).to include("followers")
-    #   expect(message).to include("followees")
-
-    #   expect(message["username"]).to eq(user_params[:username])
-    #   expect(message["email"]).to eq(user_params[:email])
-    #   expect(message["profile_name"]).to eq(user_params[:profile_name])
-    #   expect(message["location"]).to eq(user_params[:location])
-    # end
-
-    # it 'returns a 400 (bad request) for invalid request' do
-    #   post :create, params: { }
-
-    #   expect(response.status).to eq(400)
-    #   expect(response.body).to include("message")
-    # end
+    it 'returns a 200 for valid request' do
+      user = Api::V1::User.create({ username: 'test ', password: 'test', profile_name: 'test', email: 'test@test.com', location: 'test' })
+      patch :update, params: { id: user.id, "_json": JWT.encode({ "user": user_params }, ENV['SUPER_SECRET_USER_KEY'] ) }
     
+      packet = JSON.parse(response.body)["message"]  
+      begin
+        message = JWT.decode(packet,ENV['SUPER_SECRET_USER_KEY'])[0]
+      rescue
+        message = nil
+      end
+      expect(response.status).to eq(200)
+      expect(message["username"]).to eq(user_params[:username])
+      expect(message["profile_name"]).to eq(user_params[:profile_name])
+      expect(message["email"]).to eq(user_params[:email])
+      expect(message["location"]).to eq(user_params[:location])
+    end
+
   end
 
   context 'DELETE #destroy' do
       
     let (:user_params) { { "username": "test4", "password": "test", "profile_name": "test", "email": "test4@test.com", "location": "test" } }
 
-    # it 'returns a 200 for valid request' do
-    #   post :create, params: { "_json": JWT.encode({ "user": user_params }, ENV['SUPER_SECRET_USER_KEY'] )}
+    it 'creates new user' do
+      user = Api::V1::User.create({ username: 'test ', password: 'test', profile_name: 'test', email: 'test@test.com', location: 'test' })
+      delete :destroy, params: { id: user.id }
       
-    #   expect(response.status).to eq(200)
-    #   expect(response.body).to include("message")
-    # end
+      packet = JSON.parse(response.body)["message"]  
+      begin
+        message = JWT.decode(packet,ENV['SUPER_SECRET_USER_KEY'])[0]
+      rescue
+        message = nil
+      end
 
-    # it 'creates new user' do
-    #   post :create, params: { "_json": JWT.encode({ "user": user_params }, ENV['SUPER_SECRET_USER_KEY'] )}
-      
-    #   packet = JSON.parse(response.body)["message"]  
-    #   begin
-    #     message = JWT.decode(packet,ENV['SUPER_SECRET_USER_KEY'])[0]
-    #   rescue
-    #     message = nil
-    #   end
-
-    #   expect(response.status).to eq(200)
-    #   expect(message).to include("_id")
-    #   expect(message).to include("username")
-    #   expect(message).to include("email")
-    #   expect(message).to include("profile_name")
-    #   expect(message).to include("location")
-    #   expect(message).to include("followers")
-    #   expect(message).to include("followees")
-
-    #   expect(message["username"]).to eq(user_params[:username])
-    #   expect(message["email"]).to eq(user_params[:email])
-    #   expect(message["profile_name"]).to eq(user_params[:profile_name])
-    #   expect(message["location"]).to eq(user_params[:location])
-    # end
-
-    # it 'returns a 400 (bad request) for invalid request' do
-    #   post :create, params: { }
-
-    #   expect(response.status).to eq(400)
-    #   expect(response.body).to include("message")
-    # end
-    
+      expect(response.status).to eq(200)
+      expect(message).to include("message")
+      expect(message["message"]).to eq("Destroyed..")
+    end
   end
-
 end

@@ -22,12 +22,8 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def destroy
-    if @user
-      @user.destroy
-      secure_response({ :message => "Destroyed.." }, :ok)
-    else
-      secure_response({ :message => "Failed.." }, :not_found)
-    end
+    @user.destroy
+    secure_response({ :message => "Destroyed.." }, :ok)
   end
 
   def follow
