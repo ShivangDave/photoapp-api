@@ -1,5 +1,9 @@
 ## Photoapp API
 
+### Build Status: 
+
+[![Build Status](https://travis-ci.com/ShivangDave/photoapp_api.svg?branch=master)](https://travis-ci.com/ShivangDave/photoapp_api)
+
 ## Features
 - E2EE ✅
     - Allow: End to End Encryption ✅
