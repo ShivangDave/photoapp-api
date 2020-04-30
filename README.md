@@ -12,19 +12,18 @@
     - Stretch: Setup a trusty && secure middleware to bounce requests ❌
 
 - Create User Profiles 
-    - Allow: Username, Profile Name, Location, Email
+    - Allow: Username, Profile Name, Location, Email ✅
     - Allow: Set an avatar
-    - Allow: Follow, Unfollow
-    - Allow: Delete Profile
+    - Allow: Follow, Unfollow ✅
+    - Allow: Delete Profile ✅
 
 - Create Posts
     - Allow: Caption, Image(s), Video(s), Location
     - Allow: Likes, Comments
     - Allow: Edit Caption, Delete Post
 
-- Unit Tests 💥
-    - 100% Code Coverage
-    - Red Green Refactor
+- Unit Tests ✅
+    - 100% Code Coverage ✅
 
 - TBD
 
