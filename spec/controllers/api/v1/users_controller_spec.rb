@@ -46,10 +46,21 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   context 'GET #show' do
     it 'returns a 200 for valid request' do
       user = Api::V1::User.create({ username: 'test ', password: 'test', profile_name: 'test', email: 'test@test.com', location: 'test' })
-      get :show, params: { id: user.id }
+      user._id = JWT.encode({user_id: user.id},ENV['SUPER_SECRET_USER_KEY']).split('.').join('$') 
+      user.save!
+      get :show, params: { id: user.slug }
+
+      packet = JSON.parse(response.body)["message"]
+      begin
+        message = JWT.decode(packet,ENV['SUPER_SECRET_USER_KEY'])[0]
+      rescue
+        message = nil
+      end
 
       expect(response.status).to eq(200)
       expect(response.body).to include("message")
+      expect(message).to include("username")
+      expect(message["username"]).to eq(user.username)
     end
     
     it 'returns a 400 (bad request) for invalid request' do
@@ -131,10 +142,13 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       
     let (:user_params) { { "username": "test4", "password": "test", "profile_name": "test", "email": "test4@test.com", "location": "test" } }
 
-    it 'creates new user' do
+    it 'deletes a user' do
       user = Api::V1::User.create({ username: 'test ', password: 'test', profile_name: 'test', email: 'test@test.com', location: 'test' })
-      delete :destroy, params: { id: user.id }
+      user._id = JWT.encode({user_id: user.id},ENV['SUPER_SECRET_USER_KEY']).split('.').join('$') 
+      user.save!
       
+      delete :destroy, params: { id: user.slug }
+
       packet = JSON.parse(response.body)["message"]  
       begin
         message = JWT.decode(packet,ENV['SUPER_SECRET_USER_KEY'])[0]

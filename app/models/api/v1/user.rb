@@ -1,6 +1,9 @@
 class Api::V1::User < ApplicationRecord
   has_secure_password
 
+  extend FriendlyId
+  friendly_id :_id, use: :slugged
+
   has_many :followed_users, foreign_key: :follower_id, class_name: 'Api::V1::Follow', dependent: :destroy
   has_many :followees, through: :followed_users
 
