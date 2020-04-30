@@ -55,7 +55,11 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def find_user
-    @user = Api::V1::User.find_by(id: params[:id])
+    begin
+      @user = Api::V1::User.friendly.find(params[:id])
+    rescue
+      @user = nil
+    end
   end
   
 end
