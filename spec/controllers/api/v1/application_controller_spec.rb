@@ -10,7 +10,6 @@ RSpec.describe ApplicationController, type: :controller do
         let (:user_params) { { "username": "test4", "password": "test", "profile_name": "test", "email": "test4@test.com", "location": "test" } }
 
         it 'current_user should return user instance' do
-            byebug
             user = Api::V1::User.create({ username: 'test ', password: 'test', profile_name: 'test', email: 'test@test.com', location: 'test' })
             profile = user.profile
             request.headers['Access-Token'] = profile[:_id]
