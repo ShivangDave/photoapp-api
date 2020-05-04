@@ -1,11 +1,16 @@
 language: ruby
+
+cache:
+  - bundler
+
 rvm:
-- 2.6.1
+  - 2.6.1
+
 script:
-- bundle install 
-- bundle exec rake db:create
-- bundle exec rake db:migrate
-- bundle exec rspec
+  - docker build . -t dshivang0/photoapp_api:latest
+  - docker run dshivang0/photoapp_api rspec
+  # - docker run -p 3000:3000 dshivang0/photoapp_api:latest 
+
 env:
   global:
   - secure: XP89nl2pTeFPtPXijv68P8QWVDB50QtbecUT+jNYVqgGDup3TuzJsm83qDOoWsUqeXGXW0vH/wY/Hi1QCFDTDngdDxMcFH4ZkuxMVhkoJrFD24EzXrkWIdGAWVb9lz4doQgPjjHLgeRg5MiPUHOe2rzzPG9WLYV428c37c5+sxszr8NAGEx7Is5G9f8H29ofFKebb+9Yi4EQaImdXIso7tguWAzC1UM5bg+wS9Lb7bf5iKTh5dTUiBuwyPeHMMoSE2m1iJNndldVVlRxSGTlapWdLjzsEue7HupyLAgiEqeXFqElXnfqW3+6B9ErRJB3DxU7LKi+jfd43LVgebO17vMZZNlw5e/G2e0EmfWP5cSEksS9irHfrD7Yp7ubI/sG4O+OLysEXasguaXnsaLBnGfTBI38pM8FkoWPdK6+T2t9jYQkTyAk6AE3QAh8bHpI3aGpDt/KoLc4lX7gkgjrsoRrKgzBr+2AWFCoOhT4WzgbAlGV3NzufwIJb7gjtFYAcjtHBs/9IA5Rq96aF4DGK318+dOm8w4MroaMBFMIg1NMLpLYOGjU7HPQio2lAwUH0Guh5nMv6B7n5qeSO0qyORjKCOdMvjzP7vYCprmgHrtUnQueGxPl2AC2LDY70cP9hny7ZyjFYZR/Z6D/4npCeNbGpzB+YG0xguV3WLmjaIg=
