@@ -8,7 +8,7 @@ rvm:
 
 script:
   - docker build . -t dshivang0/photoapp_api:latest
-  - docker run dshivang0/photoapp_api rspec
+  - docker run -e SUPER_SECRET_AUTH_KEY=$SUPER_SECRET_AUTH_KEY -e SUPER_SECRET_USER_KEY=$SUPER_SECRET_USER_KEY dshivang0/photoapp_api rspec
   # - docker run -p 3000:3000 dshivang0/photoapp_api:latest 
 
 env:
