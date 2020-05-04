@@ -8,7 +8,7 @@ rvm:
 
 script:
   - docker build . -t dshivang0/photoapp_api:latest
-  - docker run -e DB_USER_PASSWORD=$DB_USER_PASSWORD -e DB_NAME=$DB_NAME -e DB_USER_NAME=$DB_USER_NAME -e SUPER_SECRET_AUTH_KEY=$SUPER_SECRET_AUTH_KEY -e SUPER_SECRET_USER_KEY=$SUPER_SECRET_USER_KEY dshivang0/photoapp_api rspec
+  - docker run -e RAILS_ENV=test -e DB_USER_PASSWORD=$DB_USER_PASSWORD -e DB_NAME=$DB_NAME -e DB_USER_NAME=$DB_USER_NAME -e SUPER_SECRET_AUTH_KEY=$SUPER_SECRET_AUTH_KEY -e SUPER_SECRET_USER_KEY=$SUPER_SECRET_USER_KEY dshivang0/photoapp_api rspec
   # - docker run -p 80:3000 dshivang0/photoapp_api:latest 
 
 env:
