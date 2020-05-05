@@ -13,6 +13,5 @@ RUN bundle install
 
 COPY . /myapp
 
-EXPOSE 80
 CMD ./entrypoint.sh
 # CMD ["rails", "server", "-b", "0.0.0.0"]
