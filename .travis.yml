@@ -33,10 +33,6 @@ deploy:
   app: photoapp-api
   cleanup: false
   on: master
-  run:
-    - docker run -p 80:3000 registry.heroku.com/photoapp-api/web bundle install
-    - docker run -p 80:3000 registry.heroku.com/photoapp-api/web rails db:migrate
-    - docker run -p 80:3000 registry.heroku.com/photoapp-api/web
 
 # - SUPER_SECRET_AUTH_KEY
 # - SUPER_SECRET_USER_KEY
