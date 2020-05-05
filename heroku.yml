@@ -1,14 +1,3 @@
 build:
     docker:
         web: Dockerfile
-
-release:
-    config:
-        RAILS_ENV: production
-    command:
-        - bundle exec rails db:migrate
-    image: web
-
-run:
-    command:
-        - bundle exec rails s

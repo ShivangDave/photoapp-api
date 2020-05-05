@@ -12,5 +12,6 @@ RUN gem install bundler -v 2.0.1
 RUN bundle install
 
 COPY . /myapp
+
 EXPOSE 3000
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-b", "0.0.0.0", "-p", "80"]
