@@ -7,5 +7,3 @@ release:
     command:
         - bundle exec rake db:migrate
     image: web
-run:
-  web: bundle exec puma -C config/puma.rb
