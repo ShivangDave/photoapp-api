@@ -46,5 +46,4 @@ deploy:
   app: 
     ci_cd: photoapp-api
   on:
-    repo: shivangdave/photoapp_api
-    branch: ci_cd
+    all_branches: true
