@@ -46,6 +46,7 @@ deploy:
   app: 
     ci_cd: photoapp-api
   cleanup: false
+  on: master
   run:
     - docker run -p 80:3000 registry.heroku.com/photoapp-api/web bundle install
     - docker run -p 80:3000 registry.heroku.com/photoapp-api/web rails db:migrate
