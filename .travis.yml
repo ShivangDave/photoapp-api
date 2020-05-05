@@ -43,8 +43,7 @@ deploy:
   provider: heroku
   api_key:
     secure: "KtZdPa3iJAFRsq/max6vaApVlZ13q6lCVjfEBES+Prrv+yV0K+bFoXaGk1C+QozyJT9RWsybyYRUb4XV6TsHi7avViM3T8upPN2wNwpLvxMsAWsQIRxjleseD7H3ltsb+mrrrclUaSQm6VkAnIUui0W/kRGEohjYowe0BNTTCvYxJ4bZ0+Cfnvln05pZKSmgkgxXDj8haiqhZRIXV9WAVd8l8UolYl8MKYoDyIj8Actgc1MYfG8QXjcDrBe9JTRX9vhqT5l7XwaPGt3LiO+L4rXpjugwRtCohUz7sx1HGKnmauOYj5Ywwz6fQFrmJoPyztncD6UayOeF2l9ETBkHdYYWYvp8gy6drhaXGRnvhlcspRTPvSs23GXl5MzI33u3NIbbuxBfvaT9RUvMlVCsoI36/9GNaAMGhnedPL9mVsOoWtexZIcOUorGsAjJ636qfDuTPe7Md+GfLYX8XKMZMQdzEm2tA/vlhdxjotPDPt9NLWn4EQmDM/5MhB4jnEJUIwD6iDMlxi8DrHCGmIP8m4mTePr+vFo2OXnS+jRmriJC5LOI7M5AZhW420tAN/+edx4z9ABUkrJ2X1fSk6+mTrYyyBougeiY4PF3Z2cFR0dQvatxsIjJmcmOiEgQIImxjN332vmpTbBbo0Alub/xkf0HrpnNCjVipMKhNt0xJlc="
-  app: 
-    ci_cd: photoapp-api
+  app: photoapp-api
   cleanup: false
   on: master
   run:
