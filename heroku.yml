@@ -1,7 +1,14 @@
 build:
     docker:
         web: Dockerfile
+
+release:
+    config:
+        RAILS_ENV: production
+    command:
+        - bundle exec rails db:migrate
+    image: web
+
 run:
-    command: 
-        - docker build . -t dshivang0/photoapp_api:latest
-        - docker-compose up 
+    command:
+        - bundle exec rails s
