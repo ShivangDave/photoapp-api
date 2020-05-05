@@ -45,6 +45,7 @@ deploy:
     secure: "iwJA1noJIb5sY8vdxJ6I6H/fAM09ZvPegSlEnt/JPLYE7/7DgM86vHU24vszq+QUbR/58w6diVDlaYO+aYQmd92lkT964Z4Z7hl/0EP+sq24yt7GPUeU6sZNN+HJ80sI5YtPO3f1L7CdlhWPZhpdnykzvD0SeRDT/qvPi5TF8CQaqZH4beCQVqKaSp2fIwNhlAKupPCGpeQv3HY2dHjx9ngKr7CSJqomyI7RGDl1wB2Gm4ImrldzMSve93PHt+33PekU8WLc+VDU8Sc1N3EVUlTYEo3Ex6+nDmP3wmtoWSjNqCOPyCwRZBBvS58SL/HBuLnvwyFgKAR7+yMVNMA71KbMM1ebPNo+bY49bHSXZMe9Q5qtH5bdTK35gqWy2Kh0+Gt+yl8A+5vMT7BO/OLUYx9rjXtX+iF6bbPhsI9M7/WSZ/4E8HSmkSFXG9NUqI6qRWfl+rDp0iUFWbp8hfQlT3tLv4bMCjZZJDrxJLyF7SA5gLW4w93kLW0487PBK/weZPApk7GYkprWBM5O3AnGYHSYafktdhYx9AOL7/ld0n3KKUWm7X0aX7cD+GbNub2c+FphBBM/VxYBeFCzpdQ20GVg7QWW2hnKrc3BPe87Nb6/tc1FXKKAXGTA22YN2wyA0UxZoH2YtbHRVFwtc70AYYbfb6M+F4718gnDsDq0g8M="
   app: 
     ci_cd: photoapp-api
+  cleanup: false
   on: master
   run:
     - docker run -p 80:3000 registry.heroku.com/photoapp-api/web bundle install
