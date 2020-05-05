@@ -2,4 +2,4 @@ build:
     docker:
         web: Dockerfile
 run:
-    web: docker build . -t dshivang0/photoapp_api:latest
+    web: docker-compose up 
