@@ -9,6 +9,12 @@ RSpec.describe ApplicationController, type: :controller do
     context 'Testing Application Controller Methods' do
         let (:user_params) { { "username": "test4", "password": "test", "profile_name": "test", "email": "test4@test.com", "location": "test" } }
 
+        it 'expect 200 response on root path' do
+            get :index
+            expect(response.status).to eq(200)
+            expect(response.body).to include("Photo API Home Page")
+        end
+
         it 'current_user should return user instance' do
             user = Api::V1::User.create({ username: 'test ', password: 'test', profile_name: 'test', email: 'test@test.com', location: 'test' })
             profile = user.profile
