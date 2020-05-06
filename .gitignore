@@ -8,6 +8,7 @@
 /.bundle
 .env
 /config/secrets.yml
+.backup_travis.yml
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

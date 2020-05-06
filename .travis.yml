@@ -33,14 +33,3 @@ deploy:
   app: photoapp-api
   cleanup: false
   on: master
-
-# - SUPER_SECRET_AUTH_KEY
-# - SUPER_SECRET_USER_KEY
-# - DB_USER
-# - DB_USER_NAME
-# - DB_USER_PASSWORD
-# - DB_USER_ALT
-# - DB_USER_NAME_ALT
-# - DB_USER_PASSWORD_ALT
-# - RAILS_ENV=test
-# - RAILS_ENV=development
