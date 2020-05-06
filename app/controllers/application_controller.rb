@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::API
     
+    def index
+        render :html => "Photo API Home Page", :status => :ok
+    end
+
     def current_user
         token = self.request.headers['Access-Token']
         user_id = JWT.decode(token,ENV['SUPER_SECRET_USER_KEY'])[0]["user_id"]

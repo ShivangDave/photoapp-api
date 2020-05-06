@@ -1,6 +1,7 @@
 ## Photoapp API
 
-### Build Status 
+### Latest Build (Production)
+[Link](https://photoapp-api.herokuapp.com/)
 
 [![Build Status](https://travis-ci.com/ShivangDave/photoapp_api.svg?branch=master)](https://travis-ci.com/ShivangDave/photoapp_api)
 
@@ -25,6 +26,11 @@
 - Unit Tests ✅
     - 100% Code Coverage ✅
 
+- Automated Builds CI/CD ✅
+    - Docker ✅
+    - Travis CI ✅
+    - Heroku CD (Free tier dyno) ✅
+
 - TBD
 
 ## Stack
@@ -33,7 +39,9 @@
 - Unit Tests (API): RSpec
 - Frontend: React, GraphQL
 - Storage: Google Cloud
+- Virtualization: Docker Container
 - CI: Travis CI
+- CD: Heroku
 
 ## Status Code
 

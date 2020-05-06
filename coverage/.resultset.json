@@ -83,6 +83,8 @@
           null,
           1,
           null,
+          1,
+          null,
           null,
           null,
           null,
@@ -334,6 +336,9 @@
       "/home/shivangdave/Project/photoapp_api/config/routes.rb": {
         "lines": [
           1,
+          null,
+          1,
+          null,
           1,
           1,
           1,
@@ -345,6 +350,10 @@
       "/home/shivangdave/Project/photoapp_api/app/controllers/application_controller.rb": {
         "lines": [
           1,
+          null,
+          1,
+          1,
+          null,
           null,
           1,
           5,
@@ -552,6 +561,6 @@
         ]
       }
     },
-    "timestamp": 1588636013
+    "timestamp": 1588775773
   }
 }
