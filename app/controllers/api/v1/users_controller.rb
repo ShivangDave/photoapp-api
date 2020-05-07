@@ -37,14 +37,13 @@ class Api::V1::UsersController < ApplicationController
   private
   def users_params
     if decode_request
-      decode_request.require(:user).permit(:username,:password,:profile_name,:email,:location)
+      decode_request.require(:user).permit(:username,:password,:email)
     end
   end
 
   def check_persistance
     if @user && @user.persisted?
-      profile = @user.profile
-      secure_response(profile, :ok)
+      secure_response(@user.json_profile, :ok)
     else
       if @user.nil?
         secure_response({ :message => "Something went wrong.."}, :bad_request)
@@ -56,7 +55,8 @@ class Api::V1::UsersController < ApplicationController
 
   def find_user
     begin
-      @user = Api::V1::User.friendly.find(params[:id])
+      @profile = Api::V1::Profile.friendly.find(params[:id])
+      @user = @profile.user
     rescue
       @user = nil
     end

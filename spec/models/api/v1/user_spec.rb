@@ -15,61 +15,61 @@ RSpec.describe Api::V1::User, :type => :model do
   context 'User Validations Tests' do
     
     it 'ensures user has a username' do
-      user = Api::V1::User.new(password: 'test',profile_name: 'test', email: 'test@test.com', location: 'test').save
+      user = Api::V1::User.new(password: 'test', email: 'test@test.com').save
       expect(user).to eq(false)
     end
 
     it 'ensures user has a password' do
-      user = Api::V1::User.new(username: 'test', profile_name: 'test', email: 'test@test.com', location: 'test').save
+      user = Api::V1::User.new(username: 'test', email: 'test@test.com').save
       expect(user).to eq(false)
     end
 
-    it 'ensures user has a profile_name' do
-      user = Api::V1::User.new(username: 'test', password: 'test', email: 'test@test.com', location: 'test').save
-      expect(user).to eq(false)
-    end
+    # it 'ensures user has a profile_name' do
+    #   user = Api::V1::User.new(username: 'test', password: 'test', email: 'test@test.com', location: 'test').save
+    #   expect(user).to eq(false)
+    # end
 
     it 'ensures user has an email' do
-      user = Api::V1::User.new(username: 'test', password: 'test', profile_name: 'test', location: 'test').save
+      user = Api::V1::User.new(username: 'test', password: 'test').save
       expect(user).to eq(false)
     end
 
     it 'ensures user has correct syntax for an email' do
-      user = Api::V1::User.new(username: 'test', password: 'test', email: 'test@test.com', profile_name: 'test', location: 'test').save
+      user = Api::V1::User.new(username: 'test', password: 'test', email: 'test@test.com').save
       expect(user).to eq(true)
     end
 
-    it 'ensures user has a location' do
-      user = Api::V1::User.new(username: 'test', password: 'test',profile_name: 'test', email: 'test@test.com').save
-      expect(user).to eq(false)
-    end
+    # it 'ensures user has a location' do
+    #   user = Api::V1::User.new(username: 'test', password: 'test',profile_name: 'test', email: 'test@test.com').save
+    #   expect(user).to eq(false)
+    # end
 
     it 'should save' do
-      user = Api::V1::User.new(username: 'test', password: 'test',profile_name: 'test', email: 'test@test.com', location: 'test').save
+      user = Api::V1::User.new(username: 'test', password: 'test', email: 'test@test.com').save
       expect(user).to eq(true)
     end
 
     it 'username should be unique' do
-      user = Api::V1::User.new(username: 'test', password: 'test', profile_name: 'test', email: 'test@test.com', location: 'test').save
-      user2 = Api::V1::User.new(username: 'test', password: 'test', profile_name: 'test', email: 'test@test.com', location: 'test').save
+      user = Api::V1::User.new(username: 'test', password: 'test', email: 'test@test.com').save
+      user2 = Api::V1::User.new(username: 'test', password: 'test', email: 'test@test.com').save
       expect(user).to eq(true)
       expect(user2).to eq(false)
     end
 
     it 'email should be unique' do
-      user = Api::V1::User.new(username: 'test', password: 'test', profile_name: 'test', email: 'test@test.com', location: 'test').save
-      user2 = Api::V1::User.new(username: 'test2', password: 'test', profile_name: 'test', email: 'test@test.com', location: 'test').save
+      user = Api::V1::User.new(username: 'test', password: 'test', email: 'test@test.com').save
+      user2 = Api::V1::User.new(username: 'test2', password: 'test', email: 'test@test.com').save
       expect(user).to eq(true)
       expect(user2).to eq(false)
     end
   end
 
   context 'User ActiveRecord & Scope Tests' do
-    let (:params)  { { username: 'test ', password: 'test', profile_name: 'test', email: 'test@test.com', location: 'test' } }
-    let (:params2) { { username: 'test2', password: 'test', profile_name: 'test', email: 'test2@test.com', location: 'test' } }
-    let (:params3) { { username: 'test3', password: 'test', profile_name: 'test', email: 'test3@test.com', location: 'test' } }
-    let (:params4) { { username: 'test4', password: 'test', profile_name: 'test', email: 'test4@test.com', location: 'test' } }
-    let (:params5) { { username: 'test5', password: 'test', profile_name: 'test', email: 'test5@test.com', location: 'test' } }
+    let (:params)  { { username: 'test ', password: 'test', email: 'test@test.com' } }
+    let (:params2) { { username: 'test2', password: 'test', email: 'test2@test.com' } }
+    let (:params3) { { username: 'test3', password: 'test', email: 'test3@test.com' } }
+    let (:params4) { { username: 'test4', password: 'test', email: 'test4@test.com' } }
+    let (:params5) { { username: 'test5', password: 'test', email: 'test5@test.com' } }
     
     before(:each) do
       Api::V1::User.new(params).save
@@ -96,32 +96,32 @@ RSpec.describe Api::V1::User, :type => :model do
 
     it 'should get back profile Hash' do
       user1 = Api::V1::User.all.sample
-      profile = user1.profile
+      profile = user1.json_profile
 
       expect(profile.class).to be(Hash)
     end
 
     it 'profile hash should have _id' do
       user1 = Api::V1::User.all.sample
-      profile = user1.profile
-      expect(profile).to include(:_id)
+      profile = user1.json_profile
+      expect(profile).to include("_id")
     end
 
     it 'profile hash should have an encoded id' do
       user1 = Api::V1::User.all.sample
-      profile = user1.profile
-      encoded_id = JWT.encode({ user_id: user1.id },ENV['SUPER_SECRET_USER_KEY'])
+      profile = user1.json_profile
+      encoded_id = JWT.encode({ user_id: user1.id },ENV['SUPER_SECRET_USER_KEY']).split('.').join('$')
 
-      expect(profile[:_id]).to_not eq(user1.id)
-      expect(profile[:_id]).to eq(encoded_id)
+      expect(profile["_id"]).to_not eq(user1.id)
+      expect(profile["_id"]).to eq(encoded_id)
     end
     
     it 'profile hash encoded id can be decoded' do
       user1 = Api::V1::User.all.sample
-      profile = user1.profile
-      decoded_id = JWT.decode(profile[:_id],ENV['SUPER_SECRET_USER_KEY'])[0]["user_id"]
+      profile = user1.json_profile
+      decoded_id = JWT.decode(profile["_id"].split('$').join('.'),ENV['SUPER_SECRET_USER_KEY'])[0]["user_id"]
 
-      expect(profile[:_id]).to_not eq(user1.id)
+      expect(profile["_id"]).to_not eq(user1.id)
       expect(user1.id).to eq(decoded_id)
     end
 
@@ -129,34 +129,34 @@ RSpec.describe Api::V1::User, :type => :model do
     
     it 'profile hash should have username' do
       user1 = Api::V1::User.all.sample
-      profile = user1.profile
+      profile = user1.json_profile
       expect(profile).to include("username")
     end
     
     it 'profile hash should have profile_name' do
       user1 = Api::V1::User.all.sample
-      profile = user1.profile
+      profile = user1.json_profile
 
       expect(profile).to include("profile_name")
     end
     
     it 'profile hash should have location' do
       user1 = Api::V1::User.all.sample
-      profile = user1.profile
+      profile = user1.json_profile
 
       expect(profile).to include("location")
     end
     
     it 'profile hash should have followers' do
       user1 = Api::V1::User.all.sample
-      profile = user1.profile
+      profile = user1.json_profile
 
       expect(profile).to include("followers")
     end
     
     it 'profile hash should have followees' do
       user1 = Api::V1::User.all.sample
-      profile = user1.profile
+      profile = user1.json_profile
 
       expect(profile).to include("followees")
     end
