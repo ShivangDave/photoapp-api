@@ -102,8 +102,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
       expect(message["username"]).to eq(user_params[:username])
       expect(message["email"]).to eq(user_params[:email])
-      expect(message["profile_name"]).to eq(user_params[:profile_name])
-      expect(message["location"]).to eq(user_params[:location])
+      expect(message["profile_name"]).to eq(user_params[:username])
     end
 
     it 'returns a 400 (bad request) for invalid request' do
@@ -130,7 +129,6 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
       expect(response.status).to eq(200)
       expect(message["username"]).to eq(user_params[:username])
-      expect(message["profile_name"]).to eq(user_params[:profile_name])
       expect(message["email"]).to eq(user_params[:email])
       expect(message["location"]).to eq(user_params[:location])
     end

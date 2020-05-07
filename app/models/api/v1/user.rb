@@ -60,7 +60,8 @@ class Api::V1::User < ApplicationRecord
           user_id: self.id
         },
         ENV['SUPER_SECRET_USER_KEY']
-      ).split('.').join('$')
+      ).split('.').join('$'),
+      profile_name: self.username
     )
     # self.profile._id = JWT.encode({user_id: self.id},ENV['SUPER_SECRET_USER_KEY']).split('.').join('$')
   end

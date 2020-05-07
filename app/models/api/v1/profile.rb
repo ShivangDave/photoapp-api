@@ -9,4 +9,7 @@ class Api::V1::Profile < ApplicationRecord
 
     has_many :following_users, foreign_key: :followee_id, class_name: 'Api::V1::Follow', dependent: :destroy
     has_many :followers, through: :following_users
+
+    validates :slug, :user_id, { :presence => true, :uniqueness => { :case_sensitive => false } }
+    validates :profile_name, :presence => true
 end
