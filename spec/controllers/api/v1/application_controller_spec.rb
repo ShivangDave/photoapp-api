@@ -16,10 +16,10 @@ RSpec.describe ApplicationController, type: :controller do
         end
 
         it 'current_user should return user instance' do
-            user = Api::V1::User.create({ username: 'test ', password: 'test', profile_name: 'test', email: 'test@test.com', location: 'test' })
+            user = Api::V1::User.create({ username: 'test ', password: 'test', email: 'test@test.com' })
             profile = user.profile
             request.headers['Access-Token'] = profile[:_id]
-            
+
             a1 = ApplicationController.new
             a1.request = request
             
@@ -46,7 +46,7 @@ RSpec.describe ApplicationController, type: :controller do
         
         it 'authenticate! should return user instance if there is a current_user' do
            
-            user = Api::V1::User.create({ username: 'test ', password: 'test', profile_name: 'test', email: 'test@test.com', location: 'test' })
+            user = Api::V1::User.create({ username: 'test ', password: 'test', email: 'test@test.com' })
             profile = user.profile
             request.headers['Access-Token'] = profile[:_id]
             

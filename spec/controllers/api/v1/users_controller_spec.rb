@@ -45,11 +45,10 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
   context 'GET #show' do
     it 'returns a 200 for valid request' do
-      user = Api::V1::User.create({ username: 'test ', password: 'test', profile_name: 'test', email: 'test@test.com', location: 'test' })
-      user._id = JWT.encode({user_id: user.id},ENV['SUPER_SECRET_USER_KEY']).split('.').join('$') 
-      user.save!
-      get :show, params: { id: user.slug }
-
+      user = Api::V1::User.create({ username: 'test ', password: 'test', email: 'test@test.com' })
+ 
+      get :show, params: { id: user.profile.slug }
+      
       packet = JSON.parse(response.body)["message"]
       begin
         message = JWT.decode(packet,ENV['SUPER_SECRET_USER_KEY'])[0]
@@ -73,7 +72,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
   context 'POST #create' do
       
-    let (:user_params) { { "username": "test4", "password": "test", "profile_name": "test", "email": "test4@test.com", "location": "test" } }
+    let (:user_params) { { "username": "test4", "password": "test", "email": "test4@test.com" } }
 
     it 'returns a 200 for valid request' do
       post :create, params: { "_json": JWT.encode({ "user": user_params }, ENV['SUPER_SECRET_USER_KEY'] )}
@@ -117,10 +116,10 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   end
 
   context 'PATCH #update' do   
-    let (:user_params) { { "username": "test4", "password": "test", "profile_name": "test", "email": "test4@test.com", "location": "test" } }
+    let (:user_params) { { "username": "test4", "password": "test", "email": "test4@test.com" } }
 
     it 'returns a 200 for valid request' do
-      user = Api::V1::User.create({ username: 'test ', password: 'test', profile_name: 'test', email: 'test@test.com', location: 'test' })
+      user = Api::V1::User.create({ username: 'test ', password: 'test', email: 'test@test.com' })
       patch :update, params: { id: user.id, "_json": JWT.encode({ "user": user_params }, ENV['SUPER_SECRET_USER_KEY'] ) }
     
       packet = JSON.parse(response.body)["message"]  
@@ -140,14 +139,12 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
   context 'DELETE #destroy' do
       
-    let (:user_params) { { "username": "test4", "password": "test", "profile_name": "test", "email": "test4@test.com", "location": "test" } }
+    let (:user_params) { { "username": "test4", "password": "test", "email": "test4@test.com" } }
 
     it 'deletes a user' do
-      user = Api::V1::User.create({ username: 'test ', password: 'test', profile_name: 'test', email: 'test@test.com', location: 'test' })
-      user._id = JWT.encode({user_id: user.id},ENV['SUPER_SECRET_USER_KEY']).split('.').join('$') 
-      user.save!
-      
-      delete :destroy, params: { id: user.slug }
+      user = Api::V1::User.create({ username: 'test ', password: 'test', email: 'test@test.com' })
+          
+      delete :destroy, params: { id: user.profile.slug }
 
       packet = JSON.parse(response.body)["message"]  
       begin

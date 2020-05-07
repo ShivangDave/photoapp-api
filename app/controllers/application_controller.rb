@@ -6,6 +6,7 @@ class ApplicationController < ActionController::API
 
     def current_user
         token = self.request.headers['Access-Token']
+        token = token.split('$').join('.')
         user_id = JWT.decode(token,ENV['SUPER_SECRET_USER_KEY'])[0]["user_id"]
         current = Api::V1::User.find_by(id: user_id)
     end
