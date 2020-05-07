@@ -23,6 +23,13 @@ def seed
   @u1.profile.followers << @u2.profile
   @u1.profile.followers << @u3.profile
   @u2.profile.followers << @u3.profile
+
+
+  @p1 = @u1.profile.posts.build(caption: 'First Post', location: 'Atlanta, GA')
+  @p1.save
+
+  @p2 = @u2.profile.posts.build(caption: 'Second Post', location: 'Atlanta, GA')
+  @p2.save
   
 end
 

@@ -1,15 +1,22 @@
 class Api::V1::User < ApplicationRecord
   has_secure_password
 
+  # Profile Model Associations
   has_one :profile, class_name: 'Api::V1::Profile', dependent: :destroy
 
+  # Follow Model Associations
   has_many :followers, through: :profile
   has_many :followees, through: :profile
 
+  # Post Model Associations
+  has_many :posts, through: :profile
+
+  # User Model Validations
   validates :username, :password, :email, :presence => true
   validates :username, :email, :uniqueness => { :case_sensitive => false }
   validates :email, :email => true
 
+  # Build user's profile after sign up
   after_create :add_slug_and_id
 
   @VISIBLE_PUBLIC_ATTR = [:username, :profile_name, :location]
