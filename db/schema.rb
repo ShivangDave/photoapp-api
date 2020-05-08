@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_07_215019) do
+ActiveRecord::Schema.define(version: 2020_05_07_231320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,22 @@ ActiveRecord::Schema.define(version: 2020_05_07_215019) do
     t.integer "follower_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "api_v1_likes", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "api_v1_post_likes", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "profile_id"
+    t.bigint "like_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["like_id"], name: "index_api_v1_post_likes_on_like_id"
+    t.index ["post_id"], name: "index_api_v1_post_likes_on_post_id"
+    t.index ["profile_id"], name: "index_api_v1_post_likes_on_profile_id"
   end
 
   create_table "api_v1_posts", force: :cascade do |t|

@@ -30,6 +30,12 @@ def seed
 
   @p2 = @u2.profile.posts.build(caption: 'Second Post', location: 'Atlanta, GA')
   @p2.save
+
+  byebug
+
+  @l1 = @u2.profile.create_like.build(post: @p1, like: Api::V1::Like.create)
+  @l1.save
+
   
 end
 
