@@ -398,7 +398,7 @@
         "lines": [
           1,
           1,
-          4,
+          6,
           null,
           null
         ]
@@ -534,7 +534,11 @@
       "/home/shivangdave/Project/photoapp_api/app/models/api/v1/post.rb": {
         "lines": [
           1,
+          null,
           1,
+          1,
+          1,
+          null,
           null
         ]
       },
@@ -557,6 +561,10 @@
           1,
           null,
           null,
+          1,
+          null,
+          null,
+          1,
           1,
           null,
           null,
@@ -655,8 +663,29 @@
           null,
           null
         ]
+      },
+      "/home/shivangdave/Project/photoapp_api/app/models/api/v1/post_like.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null
+        ]
+      },
+      "/home/shivangdave/Project/photoapp_api/app/models/api/v1/like.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1588890998
+    "timestamp": 1588902891
   }
 }

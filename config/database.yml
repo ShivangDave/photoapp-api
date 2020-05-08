@@ -5,7 +5,7 @@
 #   gem 'sqlite3'
 #
 
-
+# 47889
 production:
   adapter: postgresql
   host: 'ec2-34-234-228-127.compute-1.amazonaws.com'
@@ -28,6 +28,7 @@ test:
   password: <%= ENV.fetch('DB_USER_PASSWORD_ALT') %>
   timeout: 5000
 
+  # 47889
 development:
   adapter: postgresql
   host: 'ec2-34-234-228-127.compute-1.amazonaws.com'
