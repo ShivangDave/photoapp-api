@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_07_231320) do
+ActiveRecord::Schema.define(version: 2020_05_08_021805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "api_v1_comments", force: :cascade do |t|
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "api_v1_follows", force: :cascade do |t|
     t.integer "followee_id"
@@ -25,6 +31,17 @@ ActiveRecord::Schema.define(version: 2020_05_07_231320) do
   create_table "api_v1_likes", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "api_v1_post_comments", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "profile_id"
+    t.bigint "comment_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["comment_id"], name: "index_api_v1_post_comments_on_comment_id"
+    t.index ["post_id"], name: "index_api_v1_post_comments_on_post_id"
+    t.index ["profile_id"], name: "index_api_v1_post_comments_on_profile_id"
   end
 
   create_table "api_v1_post_likes", force: :cascade do |t|
