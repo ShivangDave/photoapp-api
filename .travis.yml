@@ -8,8 +8,8 @@ rvm:
 
 script:
   - docker build . -t dshivang0/photoapp_api:latest
-  - docker run dshivang0/photoapp_api:latest rails db:migrate
-  - docker run dshivang0/photoapp_api:latest rspec
+  - docker run -e DB_USER_PASSWORD=$DB_USER_PASSWORD -e DB_NAME=$DB_NAME -e DB_USER_NAME=$DB_USER_NAME -e DB_USER_PASSWORD_ALT=$DB_USER_PASSWORD_ALT -e DB_NAME_ALT=$DB_NAME_ALT -e DB_USER_NAME_ALT=$DB_USER_NAME_ALT -e SUPER_SECRET_AUTH_KEY=$SUPER_SECRET_AUTH_KEY -e SUPER_SECRET_USER_KEY=$SUPER_SECRET_USER_KEY -e RAILS_ENV=$RAILS_ENV dshivang0/photoapp_api:latest rails db:migrate
+  - docker run -e DB_USER_PASSWORD=$DB_USER_PASSWORD -e DB_NAME=$DB_NAME -e DB_USER_NAME=$DB_USER_NAME -e DB_USER_PASSWORD_ALT=$DB_USER_PASSWORD_ALT -e DB_NAME_ALT=$DB_NAME_ALT -e DB_USER_NAME_ALT=$DB_USER_NAME_ALT -e SUPER_SECRET_AUTH_KEY=$SUPER_SECRET_AUTH_KEY -e SUPER_SECRET_USER_KEY=$SUPER_SECRET_USER_KEY -e RAILS_ENV=$RAILS_ENV dshivang0/photoapp_api:latest rspec
   
 env:
   global:
