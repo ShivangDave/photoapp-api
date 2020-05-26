@@ -19,7 +19,11 @@ class Api::V1::Profile < ApplicationRecord
     
     # Like Model Association ( User is Liking posts)
     has_many :create_like, foreign_key: :profile_id, class_name: 'Api::V1::PostLike', dependent: :destroy
-    has_many :liked_items, through: :create_like, source: :like, dependent: :destroy
+    has_many :liked, through: :create_like, source: :like, dependent: :destroy
+    
+    # Comment Model Association ( User is Commenting on posts)
+    has_many :create_comment, foreign_key: :profile_id, class_name: 'Api::V1::PostComment', dependent: :destroy
+    has_many :commented, through: :create_comment, source: :comment, dependent: :destroy
 
     # Profile Model Validations
     validates :slug, :user_id, { :presence => true, :uniqueness => { :case_sensitive => false } }

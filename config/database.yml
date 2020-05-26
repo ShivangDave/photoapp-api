@@ -19,7 +19,7 @@ production:
 
 test:
   adapter: postgresql
-  host: 'ec2-54-165-36-134.compute-1.amazonaws.com'
+  host: 'ec2-35-172-73-125.compute-1.amazonaws.com'
   port: 5432
   encoding: unicode
   database: <%= ENV.fetch('DB_NAME_ALT') %>
