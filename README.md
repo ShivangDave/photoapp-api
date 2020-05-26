@@ -3,7 +3,7 @@
 ### Latest Build (Production)
 [Link](https://photoapp-api.herokuapp.com/)
 
-[![Build Status](https://travis-ci.com/ShivangDave/photoapp_api.svg?branch=master)](https://travis-ci.com/ShivangDave/photoapp_api)
+[![Build Status](https://travis-ci.com/ShivangDave/photoapp-api.svg?branch=master)](https://travis-ci.com/ShivangDave/photoapp-api)
 
 ## Features
 - E2EE ✅
