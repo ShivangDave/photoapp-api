@@ -34,7 +34,7 @@ def seed
   @l1 = @u2.profile.create_like.build(post: @p1, like: Api::V1::Like.create)
   @l1.save
 
-  byebug
+  # byebug
   
   comment = Api::V1::Comment.create(body: 'First Comment')
   @c1 = @u2.profile.create_comment.build(post: @p1, comment: comment)

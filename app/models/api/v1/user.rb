@@ -11,6 +11,10 @@ class Api::V1::User < ApplicationRecord
   # Post Model Associations
   has_many :posts, through: :profile
 
+  # Comment Model Associations
+  # has_many :post_comments, class_name: 'Api::V1::PostComment'
+  # has_many :comments, through: :post_comments
+
   # User Model Validations
   validates :username, :password, :email, :presence => true
   validates :username, :email, :uniqueness => { :case_sensitive => false }
